@@ -13,8 +13,6 @@ if (isset($_POST['submit'])) {
     $Konten = new Konten();
     $result = $Konten->update($id, $judul, $konten, $thumbnail, $orientasi, $durasi);
 
-    var_dump($result);
-
     if ($result['status']) {
         header('Location: /konten/index.php');
     } else {

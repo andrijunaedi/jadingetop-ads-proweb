@@ -39,6 +39,46 @@ class Konten
     }
 
     /**
+     Get all data from table
+
+     return array
+     */
+    function getAllWithDevices()
+    {
+        $data = [];
+        $sql = "SELECT k.id, judul, thumbnail, orientasi, durasi, d.nama device_name, lokasi device_lokasi
+                FROM $this->table k
+                LEFT JOIN konten_devices kd on k.id = kd.konten
+                LEFT JOIN devices d on d.id = kd.device";
+        $result = $this->db->query($sql);
+
+        try {
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    if (!isset($data[$row['id']])) {
+                        $data[$row['id']] = [
+                            'id' => $row['id'],
+                            'thumbnail' => $row['thumbnail'],
+                            'judul' => $row['judul'],
+                            'orientasi' => $row['orientasi'],
+                            'devices' => [],
+                        ];
+                    }
+                    $data[$row['id']]['devices'][] = "{$row['device_name']}";
+                }
+
+                return $data;
+            } else {
+                return "Konten tidak ditemukan";
+            }
+        } catch (\Throwable $th) {
+            throw $th;
+        } finally {
+            $this->db->close();
+        }
+    }
+
+    /**
      Get detail konten by id
      */
     function getById($id)

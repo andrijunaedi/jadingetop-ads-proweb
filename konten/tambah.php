@@ -4,7 +4,7 @@ include_once(dirname(__DIR__) . '/components/Layout/header.php');
 require_once(dirname(__DIR__) . '/models/Device.php');
 
 $Device = new Device();
-$devices = $Device->all_data();
+$devices = $Device->getAll();
 ?>
 
 <main class="pt-12 pb-20 px-14">

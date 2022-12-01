@@ -10,7 +10,7 @@ class Device
         $this->db = $conn;
     }
 
-    function all_data()
+    function getAll()
     {
         $data = [];
         $sql = "SELECT slug, nama, lokasi FROM $this->table";

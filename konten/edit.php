@@ -132,9 +132,7 @@ if ($id) {
                 </div>
             </div>
         </form>
-
     </div>
-
 </main>
 
 <?php include_once(dirname(__DIR__) . '/components/Layout/footer.php') ?>

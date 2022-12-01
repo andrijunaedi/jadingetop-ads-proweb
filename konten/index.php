@@ -4,7 +4,7 @@ include_once(dirname(__DIR__) . '/components/Layout/header.php');
 require_once(dirname(__DIR__) . '/models/Konten.php');
 
 $Konten = new Konten();
-$contents = $Konten->getAll();
+$contents = $Konten->getAllWithDevices();
 ?>
 
 <main class="pt-12 pb-20 px-14">
@@ -45,7 +45,7 @@ $contents = $Konten->getAll();
                                             </td>
                                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?= $content['judul'] ?></td>
                                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?= ucwords($content['orientasi']) ?></td>
-                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">WarmingUP - FIT LT4, KorTAIL FIT LT4</td>
+                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 truncate"><?= implode(", ", $content['devices']) ?></td>
                                             <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                                                 <form class="space-x-3" action="/konten/delete.php" method="post">
                                                     <a href="/konten/edit.php?id=<?= $content['id'] ?>" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">, <?= $content['judul'] ?></span></a>

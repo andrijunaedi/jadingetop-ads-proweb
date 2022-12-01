@@ -9,8 +9,6 @@ if (isset($_POST['submit'])) {
     $orientasi = $_POST['orientasi'];
     $durasi = $_POST['durasi'];
 
-    var_dump($orientasi);
-
     $Konten = new Konten();
     $result = $Konten->insert($judul, $konten, $thumbnail, $orientasi, $durasi);
 
