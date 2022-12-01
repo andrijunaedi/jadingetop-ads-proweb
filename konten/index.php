@@ -4,7 +4,7 @@ include_once(dirname(__DIR__) . '/components/Layout/header.php');
 require_once(dirname(__DIR__) . '/models/Konten.php');
 
 $Konten = new Konten();
-$contents = $Konten->all_data();
+$contents = $Konten->getAll();
 ?>
 
 <main class="pt-12 pb-20 px-14">
@@ -46,9 +46,12 @@ $contents = $Konten->all_data();
                                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?= $content['judul'] ?></td>
                                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?= ucwords($content['orientasi']) ?></td>
                                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">WarmingUP - FIT LT4, KorTAIL FIT LT4</td>
-                                            <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium space-x-3 sm:pr-6">
-                                                <a href="/konten/edit.php?id=<?= $content['id'] ?>" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">, <?= $content['judul'] ?></span></a>
-                                                <a href="#" class="text-red-600 hover:text-red-800">Hapus<span class="sr-only">, <?= $content['judul'] ?></span></a>
+                                            <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                                <form class="space-x-3" action="/konten/delete.php" method="post">
+                                                    <a href="/konten/edit.php?id=<?= $content['id'] ?>" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">, <?= $content['judul'] ?></span></a>
+                                                    <input type="hidden" name="id" value="<?= $content['id'] ?>">
+                                                    <button type="submit" class="text-red-600 hover:text-red-900">Delete<span class="sr-only">, <?= $content['judul'] ?></span></button>
+                                                </form>
                                             </td>
                                         </tr>
                                     <?php endforeach ?>

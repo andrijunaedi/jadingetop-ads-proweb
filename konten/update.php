@@ -1,18 +1,19 @@
 <?php
 require_once(dirname(__DIR__) . '/models/Konten.php');
 
-# Add new data Konten
+# Update konten by id
 if (isset($_POST['submit'])) {
+    $id = $_POST['id'];
     $judul = $_POST['judul'];
     $konten = $_POST['konten'];
     $thumbnail = $_POST['thumbnail'];
     $orientasi = $_POST['orientasi'];
     $durasi = $_POST['durasi'];
 
-    var_dump($orientasi);
-
     $Konten = new Konten();
-    $result = $Konten->insert($judul, $konten, $thumbnail, $orientasi, $durasi);
+    $result = $Konten->update($id, $judul, $konten, $thumbnail, $orientasi, $durasi);
+
+    var_dump($result);
 
     if ($result['status']) {
         header('Location: /konten/index.php');

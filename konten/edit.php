@@ -1,6 +1,24 @@
 <?php
+ob_start();
+
 $title = "Tambah Konten | Jadingetop Ads";
-include_once(dirname(__DIR__) . '/components/Layout/header.php') ?>
+include_once(dirname(__DIR__) . '/components/Layout/header.php');
+require_once(dirname(__DIR__) . '/models/Konten.php');
+
+$id = $_GET['id'];
+
+if ($id) {
+    $Konten = new Konten();
+    $result = $Konten->getById($id);
+
+    if ($result == NULL) {
+        header('Location: /konten/index.php');
+        die();
+    }
+} else {
+    header('Location: /konten/index.php');
+}
+?>
 
 <main class="pt-12 pb-20 px-14">
     <div class="px-4 sm:px-6 lg:px-4">
@@ -10,28 +28,30 @@ include_once(dirname(__DIR__) . '/components/Layout/header.php') ?>
                 <p class="mt-2 text-sm text-gray-700">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae fugiat possimus sapiente, quidem magn</p>
             </div>
         </div>
-        <form class="space-y-8 divide-y divide-gray-200">
+        <form class="space-y-8 divide-y divide-gray-200" action="/konten/update.php" method="POST">
+            <input type="hidden" name="id" value="<?php echo $result['id'] ?>">
+
             <div class="space-y-8 divide-y divide-gray-200">
                 <div>
                     <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                         <div class="sm:col-span-3">
-                            <label for="nama" class="block text-sm font-medium text-gray-700">Nama</label>
+                            <label for="judul" class="block text-sm font-medium text-gray-700">Judul</label>
                             <div class="mt-1 flex rounded-md shadow-sm">
-                                <input type="text" name="nama" id="nama" autocomplete="nama" class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                <input type="text" name="judul" id="judul" autocomplete="judul" value="<?= $result['judul'] ?>" class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                             </div>
                         </div>
 
                         <div class="sm:col-span-5">
                             <label for="konten" class="block text-sm font-medium text-gray-700">Konten</label>
                             <div class="mt-1 flex rounded-md shadow-sm">
-                                <input type="text" name="konten" id="konten" autocomplete="konten" placeholder="Masukan URL Konten" class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                <input type="text" name="konten" id="konten" autocomplete="konten" value="<?= $result['konten'] ?>" placeholder="Masukan URL Konten" class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                             </div>
                         </div>
 
                         <div class="sm:col-span-5">
                             <label for="thumbnail" class="block text-sm font-medium text-gray-700">Thumbnail</label>
                             <div class="mt-1 flex rounded-md shadow-sm">
-                                <input type="text" name="thumbnail" id="thumbnail" autocomplete="thumbnail" placeholder="Masukan URL Thumbnail" class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                <input type="text" name="thumbnail" id="thumbnail" autocomplete="thumbnail" value="<?= $result['thumbnail'] ?>" placeholder="Masukan URL Thumbnail" class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                             </div>
                         </div>
 
@@ -41,11 +61,11 @@ include_once(dirname(__DIR__) . '/components/Layout/header.php') ?>
                                 <p class="text-sm text-gray-500">Jenis orientasi konten akan menentukan TV yang dapat dipilih</p>
                                 <div class="mt-4 space-y-4">
                                     <div class="flex items-center">
-                                        <input id="portrait" name="orientasi" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                        <input id="portrait" name="orientasi" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500" value="portrait" <?= $result['orientasi'] == 'portrait' ? 'checked' : '' ?>>
                                         <label for="portrait" class="ml-3 block text-sm font-medium text-gray-700">Portrait</label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input id="landscape" name="orientasi" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                        <input id="landscape" name="orientasi" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500" value="landscape" <?= $result['orientasi'] == 'landscape' ? 'checked' : '' ?>>
                                         <label for="landscape" class="ml-3 block text-sm font-medium text-gray-700">Landscape</label>
                                     </div>
                                 </div>
@@ -53,9 +73,9 @@ include_once(dirname(__DIR__) . '/components/Layout/header.php') ?>
                         </div>
 
                         <div class="sm:col-span-2">
-                            <label for="transisi" class="block text-sm font-medium text-gray-700">Durasi Transisi</label>
+                            <label for="durasi" class="block text-sm font-medium text-gray-700">Durasi Transisi</label>
                             <div class="mt-1 flex rounded-md shadow-sm">
-                                <input type="number" name="transisi" id="transisi" autocomplete="transisi" placeholder="Satuan detik" class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                <input type="number" name="durasi" id="durasi" autocomplete="durasi" value="<?= $result['durasi'] ?>" placeholder="Satuan detik" class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                             </div>
                         </div>
 
@@ -108,7 +128,7 @@ include_once(dirname(__DIR__) . '/components/Layout/header.php') ?>
             <div class="pt-5">
                 <div class="flex justify-end">
                     <a href="/konten/index.php" class="rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Batalkan</a>
-                    <button type="submit" class="ml-3 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Simpan</button>
+                    <button name="submit" type="submit" class="ml-3 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Simpan</button>
                 </div>
             </div>
         </form>

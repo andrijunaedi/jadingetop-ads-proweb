@@ -16,7 +16,7 @@ class Konten
 
      return array
      */
-    function all_data()
+    function getAll()
     {
         $data = [];
         $sql = "SELECT id, judul, konten, thumbnail, orientasi, durasi FROM $this->table";
@@ -34,6 +34,29 @@ class Konten
         } catch (\Throwable $th) {
             throw $th;
         } finally {
+            $this->db->close();
+        }
+    }
+
+    /**
+     Get detail konten by id
+     */
+    function getById($id)
+    {
+        $sql = "SELECT id, judul, konten, thumbnail, orientasi, durasi FROM $this->table WHERE id = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("i", $id);
+
+        try {
+            $stmt->execute();
+            return $stmt->get_result()->fetch_assoc();
+        } catch (\Exception $error) {
+            return [
+                'status' => false,
+                'message' => $error->getMessage()
+            ];
+        } finally {
+            $stmt->close();
             $this->db->close();
         }
     }
