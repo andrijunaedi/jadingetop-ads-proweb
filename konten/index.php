@@ -12,7 +12,7 @@ $contents = $Konten->getAllWithDevices();
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
                 <h1 class="text-3xl font-semibold">Konten</h1>
-                <p class="mt-2 text-sm text-gray-700">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae fugiat possimus sapiente, quidem magn</p>
+                <p class="mt-2 text-sm text-gray-700">Daftar semua konten</p>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                 <a href="/konten/tambah.php" class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Tambah Konten</a>
@@ -47,8 +47,10 @@ $contents = $Konten->getAllWithDevices();
                                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?= ucwords($content['orientasi']) ?></td>
                                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 truncate"><?= implode(", ", $content['devices']) ?></td>
                                             <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                                <!-- Form post untuk menghapus konten -->
                                                 <form class="space-x-3" action="/konten/delete.php" method="post">
                                                     <a href="/konten/edit.php?id=<?= $content['id'] ?>" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">, <?= $content['judul'] ?></span></a>
+                                                    <!-- Memasukan value id konten secara tersembunyi -->
                                                     <input type="hidden" name="id" value="<?= $content['id'] ?>">
                                                     <button type="submit" class="text-red-600 hover:text-red-900">Delete<span class="sr-only">, <?= $content['judul'] ?></span></button>
                                                 </form>

@@ -12,7 +12,7 @@ $devices = $Device->getAll();
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
                 <h1 class="text-3xl font-semibold">Tambah Konten</h1>
-                <p class="mt-2 text-sm text-gray-700">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae fugiat possimus sapiente, quidem magn</p>
+                <p class="mt-2 text-sm text-gray-700">Tambahkan konten baru yang akan kamu iklankan</p>
             </div>
         </div>
         <form class="space-y-8 divide-y divide-gray-200" method="POST" action="/konten/add.php">
@@ -22,21 +22,21 @@ $devices = $Device->getAll();
                         <div class="sm:col-span-3">
                             <label for="judul" class="block text-sm font-medium text-gray-700">Judul</label>
                             <div class="mt-1 flex rounded-md shadow-sm">
-                                <input type="text" name="judul" id="judul" autocomplete="judul" class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                <input type="text" name="judul" id="judul" autocomplete="judul" class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required>
                             </div>
                         </div>
 
                         <div class="sm:col-span-5">
                             <label for="konten" class="block text-sm font-medium text-gray-700">Konten</label>
                             <div class="mt-1 flex rounded-md shadow-sm">
-                                <input type="text" name="konten" id="konten" autocomplete="konten" placeholder="Masukan URL Konten" class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                <input type="text" name="konten" id="konten" autocomplete="konten" placeholder="Masukan URL Konten" class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required>
                             </div>
                         </div>
 
                         <div class="sm:col-span-5">
                             <label for="thumbnail" class="block text-sm font-medium text-gray-700">Thumbnail</label>
                             <div class="mt-1 flex rounded-md shadow-sm">
-                                <input type="text" name="thumbnail" id="thumbnail" autocomplete="thumbnail" placeholder="Masukan URL Thumbnail" class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                <input type="text" name="thumbnail" id="thumbnail" autocomplete="thumbnail" placeholder="Masukan URL Thumbnail" class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required>
                             </div>
                         </div>
 
@@ -46,7 +46,7 @@ $devices = $Device->getAll();
                                 <p class="text-sm text-gray-500">Jenis orientasi konten akan menentukan TV yang dapat dipilih</p>
                                 <div class="mt-4 space-y-4">
                                     <div class="flex items-center">
-                                        <input id="portrait" name="orientasi" value="portrait" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                        <input id="portrait" name="orientasi" value="portrait" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500" required>
                                         <label for="portrait" class="ml-3 block text-sm font-medium text-gray-700">Portrait</label>
                                     </div>
                                     <div class="flex items-center">
@@ -78,7 +78,7 @@ $devices = $Device->getAll();
                                             <?php foreach ((array) $devices as $device) : ?>
                                                 <div class="relative flex items-start">
                                                     <div class="flex h-5 items-center">
-                                                        <input id="<?= $device["slug"] ?>" name="<?= $device["slug"] ?>" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                                        <input id="<?= $device["slug"] ?>" name="devices[]" value="<?= $device["id"] ?>" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
                                                     </div>
                                                     <div class="ml-3 text-sm">
                                                         <label for="<?= $device["slug"] ?>" class="font-medium text-gray-700"><?= $device["nama"] ?></label>

@@ -8,9 +8,10 @@ if (isset($_POST['submit'])) {
     $thumbnail = $_POST['thumbnail'];
     $orientasi = $_POST['orientasi'];
     $durasi = $_POST['durasi'];
+    $devices = $_POST['devices'];
 
     $Konten = new Konten();
-    $result = $Konten->insert($judul, $konten, $thumbnail, $orientasi, $durasi);
+    $result = $Konten->insert($judul, $konten, $thumbnail, $orientasi, $durasi, $devices);
 
     if ($result['status']) {
         header('Location: /konten/index.php');

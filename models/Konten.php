@@ -1,4 +1,6 @@
 <?php
+require_once(dirname(__DIR__) . '/models/Device.php');
+
 class Konten
 {
     public $table = "konten";
@@ -9,6 +11,11 @@ class Konten
         # Call database connection
         require(dirname(__DIR__) . '/config/database.php');
         $this->db = $conn;
+    }
+
+    public function close()
+    {
+        $this->db->close();
     }
 
     /**
@@ -46,6 +53,7 @@ class Konten
     function getAllWithDevices()
     {
         $data = [];
+        // Mengambil data konten dan devices nya (menggunakan left join)
         $sql = "SELECT k.id, judul, thumbnail, orientasi, durasi, d.nama device_name, lokasi device_lokasi
                 FROM $this->table k
                 LEFT JOIN konten_devices kd on k.id = kd.konten
@@ -55,6 +63,7 @@ class Konten
         try {
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
+                    // Pengecekan jika konten belum ada di array data
                     if (!isset($data[$row['id']])) {
                         $data[$row['id']] = [
                             'id' => $row['id'],
@@ -64,6 +73,8 @@ class Konten
                             'devices' => [],
                         ];
                     }
+
+                    // Memasukkan data devices kedalam konten dengan id yg sama
                     $data[$row['id']]['devices'][] = "{$row['device_name']}";
                 }
 
@@ -74,6 +85,7 @@ class Konten
         } catch (\Throwable $th) {
             throw $th;
         } finally {
+            // Setelah semua query dijalankan, akhiri koneksi database
             $this->db->close();
         }
     }
@@ -97,7 +109,7 @@ class Konten
             ];
         } finally {
             $stmt->close();
-            $this->db->close();
+            // $this->db->close();
         }
     }
 
@@ -115,8 +127,10 @@ class Konten
     - status (boolean)
     - message (string)
      */
-    function insert($judul, $konten, $thumbnail, $orientasi, $durasi)
+    function insert($judul, $konten, $thumbnail, $orientasi, $durasi, $devices = [])
     {
+        $Device = new Device();
+
         $sql = "INSERT INTO $this->table (judul, konten, thumbnail, orientasi, durasi) VALUES (?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("sssss", $judul, $konten, $thumbnail, $orientasi, $durasi);
@@ -124,7 +138,20 @@ class Konten
         try {
             $this->db->begin_transaction();
             $stmt->execute();
-            $this->db->commit();
+
+            // If devices not empty array, insert bulk konten_devices
+            if (!empty($devices)) {
+                $konten_id = $this->db->insert_id;
+                $this->db->commit();
+                $devices = $Device->insertBulkKontenDevices($konten_id, $devices);
+
+                if (!$devices['status']) {
+                    throw new Exception($devices['message']);
+                }
+            } else {
+                $this->db->commit();
+            }
+
             return [
                 'status' => true,
                 'message' => 'Data berhasil ditambahkan'
@@ -187,21 +214,51 @@ class Konten
      */
     function delete($id)
     {
+        // Query untuk menghapus data konten berdasarkan id
         $sql = "DELETE FROM $this->table WHERE id = ?";
         $stmt = $this->db->prepare($sql);
+        // Masukan parameter id kedalam query
         $stmt->bind_param("i", $id);
 
         try {
+            // Jalankan query
             $stmt->execute();
             return [
                 'status' => true,
                 'message' => 'Data berhasil dihapus'
             ];
         } catch (\Throwable $th) {
+            // Jika terjadi error, tampilkan pesan error
             throw $th;
         } finally {
+            // Setelah semua query dijalankan, akhiri koneksi database
             $stmt->close();
             $this->db->close();
+        }
+    }
+
+    /**
+     * Get all konten_devices by konten id
+     */
+    function getDevicesById($konten)
+    {
+        $data = [];
+        $sql = "SELECT device FROM konten_devices WHERE konten = $konten";
+        $result = $this->db->query($sql);
+
+        try {
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $data[] = $row['device'];
+                }
+                return $data;
+            } else {
+                return [];
+            }
+        } catch (\Throwable $th) {
+            throw $th;
+        } finally {
+            // $this->db->close();
         }
     }
 }

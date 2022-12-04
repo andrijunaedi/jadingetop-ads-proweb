@@ -13,7 +13,7 @@ class Device
     function getAll()
     {
         $data = [];
-        $sql = "SELECT slug, nama, lokasi FROM $this->table";
+        $sql = "SELECT id, slug, nama, lokasi FROM $this->table";
         $result = $this->db->query($sql);
 
         try {
@@ -26,6 +26,36 @@ class Device
                 return "Devices tidak ditemukan";
             }
         } catch (\Throwable $th) {
+            throw $th;
+        } finally {
+            $this->db->close();
+        }
+    }
+
+    /**
+     * Insert data bulk detail devices
+     */
+    function insertBulkKontenDevices($konten, $devices)
+    {
+        $sql = "INSERT INTO konten_devices (konten, device) VALUES ";
+        $values = [];
+        foreach ($devices as $device) {
+            $values[] = "($konten, $device)";
+        }
+        $sql .= implode(',', $values);
+        $stmt = $this->db->prepare($sql);
+
+        try {
+            $this->db->begin_transaction();
+            $stmt->execute();
+            $this->db->commit();
+
+            return [
+                'status' => true,
+                'message' => 'Berhasil menambahkan konten devices'
+            ];
+        } catch (\Throwable $th) {
+            $this->db->rollback();
             throw $th;
         } finally {
             $this->db->close();
