@@ -37,6 +37,8 @@ if ($id) {
     </div>
     <?php echo $content['judul'] ?>
     <?= $content['orientasi'] ?>
+
+<!-- regina cantik -->
 </main>
 
 <?php include_once(dirname(__DIR__) . '/components/Layout/footer.php') ?>
