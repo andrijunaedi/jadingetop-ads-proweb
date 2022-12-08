@@ -24,7 +24,7 @@ var_dump($histories);
         <tbody class="divide-gray-300 bg-white">
             <tr>
                 <td>1</td>
-                <td>100000</td>
+                <td>500000</td>
                 <td>approved</td>
                 <td>2022-12-06 09:14:55</td>
             </tr>
