@@ -22,10 +22,12 @@ body {
     height: 32px;
     border: none;
     border-radius: 5px;
+    color: white;
 }
 
 .lupa-password {
     float : right;
+    color: #0065ff;
 }
 
 .text-input {
@@ -33,6 +35,12 @@ body {
     height: 24px;
     border-width: 1px;
     border-radius: 5px;
+    padding: 9px, 13px, 9px, 13px;
+    margin: 1px;
+}
+
+a {
+    text-decoration: none;
 }
 
 .gambar {
