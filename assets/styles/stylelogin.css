@@ -16,7 +16,7 @@ body {
     text-align: left;
 }
 
-#Login {
+.masuk {
     background-color: #0065ff;
     width: 258px;
     height: 32px;
@@ -24,9 +24,8 @@ body {
     border-radius: 5px;
 }
 
-#lupa_pw {
-    float: right;
-    color: #0065ff;
+.lupa-password {
+    float : right;
 }
 
 .text-input {
