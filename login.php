@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Jadingetop Ads- Halaman Login</title>
+    <title>Login | Jadingetop Ads</title>
     <link rel="stylesheet" href="stylelogin.css">
 </head>
 <body>
