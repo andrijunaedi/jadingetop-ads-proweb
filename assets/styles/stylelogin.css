@@ -1,0 +1,49 @@
+body {
+    background-color: white;
+    font-family:  'Open Sans';
+    margin:0;
+    padding:0;
+    /* membuat elemen kanan dan kiri */
+    display:flex;  
+    justify-content: center;
+    /* gap = pemisah antar elemen */
+    gap: 120px;
+    align-items: center;
+    height: 100vh;
+}
+
+.login {
+    text-align: left;
+}
+
+.masuk {
+    background-color: #0065ff;
+    width: 258px;
+    height: 32px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+}
+
+.lupa-password {
+    float : right;
+    color: #0065ff;
+}
+
+.text-input {
+    width: 250px;
+    height: 24px;
+    border-width: 1px;
+    border-radius: 5px;
+    padding: 9px, 13px, 9px, 13px;
+    margin: 2px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.gambar {
+    width: 20%;
+    height: 360px;
+}
