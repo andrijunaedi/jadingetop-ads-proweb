@@ -14,7 +14,7 @@ if ($id) {
     $devices = $Device->getAll();
     $devices_selected = $Konten->getDevicesById($id);
 
-    var_dump('Konten Detail', $content);
+    var_dump('Konten Detail', $content); 
     var_dump('Semua Devices', $devices);
     var_dump('Devices Selected', $devices_selected);
 
@@ -33,12 +33,10 @@ if ($id) {
 <main class="pt-12 pb-20 px-14">
     <div class="flex items-center justify-between">
         <h1 class="text-3xl font-semibold">Detail Konten</h1>
-
-    </div>
+    </div class>
     <?php echo $content['judul'] ?>
     <?= $content['orientasi'] ?>
 
 <!-- regina cantik -->
-</main>
-
+</main class>
 <?php include_once(dirname(__DIR__) . '/components/Layout/footer.php') ?>
