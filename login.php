@@ -15,8 +15,8 @@
             <input id="email" name="email" class="text-input" type="text"><br><br>
             <label for="kata-sandi">Kata sandi</label><br>
             <input id="kata-sandi" name="password" class="text-input" type="text"><br><br>
-            <label for="ingt-saya">
-            <input id="ingt-saya" type="checkbox" name="ingat-saya" />Ingat saya</label>
+            <label for="ingat-saya">
+            <input id="ingat-saya" type="checkbox" name="ingat-saya" />Ingat saya</label>
             <a href="#" class="lupa-password">Lupa kata sandi?</a><br><br>
             <button class="masuk" type="button">Masuk</button>
         </form>
