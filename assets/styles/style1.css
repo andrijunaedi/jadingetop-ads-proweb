@@ -1,0 +1,128 @@
+* {
+    margin: 0;
+}
+
+.nav {
+    display: flex;
+}
+
+.sidebar {
+    background-color: #0065ff;
+    display: flex;
+    flex-direction: column;
+    padding: 3rem;
+    height: 700px;
+    width: 190px;
+}
+
+.sidebars {
+    display: flex;
+    color: white;
+    gap: 1rem;
+    align-items: center;
+}
+
+img {
+    height: 25px;
+    width: 25px;
+}
+
+.Header {
+    display: flex;
+    justify-content: end;
+    text-align: center;
+    gap: 1rem;
+    border: 1px solid black;
+    height: 115px;
+    text-align: center;
+    align-items: center;
+}
+
+.main {
+    width: 100%;
+}
+
+.Saldo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+}
+
+#button {
+    background-color: #0065ff;
+    width: 140px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    align-items: center;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    text-align: center;
+}
+
+.tambah {
+    height: auto;
+    width: 15px;
+}
+
+.logo {
+    height: auto;
+    width: 35px;
+}
+
+.konten-row {
+    display: flex;
+    margin-left: 3rem;
+    border: 1px solid black;
+}
+
+.col {
+    margin: 0 auto;
+    display: flex;
+    background-color: white;
+    margin-top: 80px;
+    padding: 5px 5px 5px 5px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .25);
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+.card {
+    display: flex;
+    height: 70px;
+    width: 100px;
+    gap: 1rem;
+    margin-left: auto;
+}
+
+.konten-riwayat {
+    border: 1px solid black;
+    margin: 0 0 0 3rem;
+}
+
+.table-konten {
+    border: 1px solid black;
+    padding: 2rem;
+    width: 80%;
+    margin: 5rem;
+    height: 300px;
+    border-radius: 20px;
+
+}
+
+table,
+th,
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 1rem;
+}
+
+.table-col {
+    margin: 2rem 0 ;
+}

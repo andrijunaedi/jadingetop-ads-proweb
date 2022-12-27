@@ -15,7 +15,7 @@ $contents = $Konten->getAllWithDevices();
                 <p class="mt-2 text-sm text-gray-700">Daftar semua konten</p>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                <a href="/konten/tambah.php" class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Tambah Konten</a>
+                <a href="tambah.php" class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Tambah Konten</a>
             </div>
         </div>
         <div class="mt-8 flex flex-col">
@@ -51,7 +51,7 @@ $contents = $Konten->getAllWithDevices();
                                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?= ucwords($content['orientasi']) ?></td>
                                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 truncate"><?= implode(", ", $content['devices']) ?></td>
                                             <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                                <a href="/konten/edit.php?id=<?= $content['id'] ?>" class="text-indigo-600 hover:text-indigo-900">Edit <span class="sr-only">, <?= $content['judul'] ?></span></a>
+                                                <a href="http://localhost/jadingetop-ads-proweb/konten/edit.php?id=<?= $content['id'] ?>" class="text-indigo-600 hover:text-indigo-900">Edit <span class="sr-only">, <?= $content['judul'] ?></span></a>
                                                 <button @click="showModal = true" type="button" class="text-red-600 hover:text-red-900">Hapus<span class="sr-only">, <?= $content['judul'] ?></span></button>
                                             </td>
                                         </tr>

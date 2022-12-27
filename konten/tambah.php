@@ -15,7 +15,7 @@ $devices = $Device->getAll();
                 <p class="mt-2 text-sm text-gray-700">Tambahkan konten baru yang akan kamu iklankan</p>
             </div>
         </div>
-        <form class="space-y-8 divide-y divide-gray-200" method="POST" action="/konten/add.php">
+        <form class="space-y-8 divide-y divide-gray-200" method="POST" action="jadingetop-ads-proweb/konten/add.php">
             <div class="space-y-8 divide-y divide-gray-200">
                 <div>
                     <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
