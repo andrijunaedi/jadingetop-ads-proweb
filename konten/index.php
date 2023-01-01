@@ -48,13 +48,13 @@ $contents = $Konten->getAllWithDevices();
                                                 </div>
                                             </td>
                                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                <a href="./detail.php?id=<?= $content['id'] ?>">
+                                                <a class="hover:text-blue-700" href="./detail.php?id=<?= $content['id'] ?>">
                                                     <?= $content['judul'] ?>
                                                 </a>
                                             </td>
                                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?= ucwords($content['orientasi']) ?></td>
                                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 truncate"><?= implode(", ", $content['devices']) ?></td>
-                                            <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                            <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 space-x-3">
                                                 <a href="/konten/edit.php?id=<?= $content['id'] ?>" class="text-indigo-600 hover:text-indigo-900">Edit <span class="sr-only">, <?= $content['judul'] ?></span></a>
                                                 <button @click="showModal = true" type="button" class="text-red-600 hover:text-red-900">Hapus<span class="sr-only">, <?= $content['judul'] ?></span></button>
                                             </td>
@@ -95,7 +95,7 @@ $contents = $Konten->getAllWithDevices();
                                             <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                                                 <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Hapus konten</h3>
                                                 <div class="mt-2">
-                                                    <p class="text-sm text-gray-500">Are you sure you want to delete your content? All of your data will be permanently removed from our servers forever. This action cannot be undone.</p>
+                                                    <p class="text-sm text-gray-500">Apakah Anda yakin menghapus konten ini?</p>
                                                 </div>
                                             </div>
                                         </div>

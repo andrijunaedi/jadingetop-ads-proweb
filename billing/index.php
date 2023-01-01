@@ -21,12 +21,12 @@ $histories = $Billing->getAll();
 
             <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
                 <dt class="truncate text-sm font-medium text-gray-500">Tertunda</dt>
-                <dd class="mt-1 text-3xl font-semibold tracking-tight text-orange-400">58.16%</dd>
+                <dd class="mt-1 text-3xl font-semibold tracking-tight text-orange-400">1,182</dd>
             </div>
 
             <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
                 <dt class="truncate text-sm font-medium text-gray-500">Batal</dt>
-                <dd class="mt-1 text-3xl font-semibold tracking-tight text-red-500">24.57%</dd>
+                <dd class="mt-1 text-3xl font-semibold tracking-tight text-red-500">439</dd>
             </div>
         </dl>
     </div>
