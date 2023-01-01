@@ -1,4 +1,7 @@
 <?php
+include_once(dirname(__DIR__) . '/helper/auth.php');
+validateUserSession();
+$userId = $_SESSION['user']['id'];
 ob_start();
 
 $title = "Tambah Konten | Jadingetop Ads";
@@ -9,7 +12,7 @@ require_once(dirname(__DIR__) . '/models/Device.php');
 $id = $_GET['id'];
 
 if ($id) {
-    $Konten = new Konten();
+    $Konten = new Konten($userId);
     $Device = new Device();
 
     $content = $Konten->getById($id);

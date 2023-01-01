@@ -1,4 +1,7 @@
 <?php
+include_once(dirname(__DIR__) . '/helper/auth.php');
+validateUserSession();
+
 $title = "Tambah Konten | Jadingetop Ads";
 include_once(dirname(__DIR__) . '/components/Layout/header.php');
 require_once(dirname(__DIR__) . '/models/Device.php');
@@ -60,7 +63,7 @@ $devices = $Device->getAll();
                         <div class="sm:col-span-2">
                             <label for="durasi" class="block text-sm font-medium text-gray-700">Durasi Transisi</label>
                             <div class="mt-1 flex rounded-md shadow-sm">
-                                <input type="number" name="durasi" id="durasi" autocomplete="durasi" placeholder="Satuan detik" class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                <input type="number" name="durasi" id="durasi" autocomplete="durasi" placeholder="Satuan detik" required class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                             </div>
                         </div>
 

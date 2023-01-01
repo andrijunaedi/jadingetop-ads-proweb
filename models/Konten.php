@@ -5,12 +5,14 @@ class Konten
 {
     public $table = "konten";
     public $db;
+    private $userId;
 
-    public function __construct()
+    public function __construct($userId)
     {
         # Call database connection
         require(dirname(__DIR__) . '/config/database.php');
         $this->db = $conn;
+        $this->userId = $userId;
     }
 
     public function close()
@@ -26,7 +28,7 @@ class Konten
     function getAll()
     {
         $data = [];
-        $sql = "SELECT id, judul, konten, thumbnail, orientasi, durasi FROM $this->table";
+        $sql = "SELECT id, judul, konten, thumbnail, orientasi, durasi FROM $this->table WHERE user = $this->userId";
         $result = $this->db->query($sql);
 
         try {
@@ -57,7 +59,8 @@ class Konten
         $sql = "SELECT k.id, judul, thumbnail, orientasi, durasi, d.nama device_name, lokasi device_lokasi
                 FROM $this->table k
                 LEFT JOIN konten_devices kd on k.id = kd.konten
-                LEFT JOIN devices d on d.id = kd.device";
+                LEFT JOIN devices d on d.id = kd.device 
+                WHERE k.user = $this->userId";
         $result = $this->db->query($sql);
 
         try {
@@ -95,7 +98,7 @@ class Konten
      */
     function getById($id)
     {
-        $sql = "SELECT id, judul, konten, thumbnail, orientasi, durasi FROM $this->table WHERE id = ?";
+        $sql = "SELECT id, judul, konten, thumbnail, orientasi, durasi FROM $this->table WHERE id = ? AND user = $this->userId";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("i", $id);
 
@@ -131,7 +134,7 @@ class Konten
     {
         $Device = new Device();
 
-        $sql = "INSERT INTO $this->table (judul, konten, thumbnail, orientasi, durasi) VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO $this->table (judul, konten, thumbnail, orientasi, durasi, user) VALUES (?, ?, ?, ?, ?, $this->userId)";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("sssss", $judul, $konten, $thumbnail, $orientasi, $durasi);
 
@@ -182,7 +185,7 @@ class Konten
      */
     function update($id, $judul, $konten, $thumbnail, $orientasi, $durasi)
     {
-        $sql = "UPDATE $this->table SET judul = ?, konten = ?, thumbnail = ?, orientasi = ?, durasi = ? WHERE id = ?";
+        $sql = "UPDATE $this->table SET judul = ?, konten = ?, thumbnail = ?, orientasi = ?, durasi = ? WHERE id = ? AND user = $this->userId";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("sssssi", $judul, $konten, $thumbnail, $orientasi, $durasi, $id);
 
@@ -215,7 +218,7 @@ class Konten
     function delete($id)
     {
         // Query untuk menghapus data konten berdasarkan id
-        $sql = "DELETE FROM $this->table WHERE id = ?";
+        $sql = "DELETE FROM $this->table WHERE id = ? AND user = $this->userId";
         $stmt = $this->db->prepare($sql);
         // Masukan parameter id kedalam query
         $stmt->bind_param("i", $id);
@@ -243,13 +246,17 @@ class Konten
     function getDevicesById($konten)
     {
         $data = [];
-        $sql = "SELECT device FROM konten_devices WHERE konten = $konten";
+        $sql = "SELECT * FROM konten_devices kd JOIN devices ON kd.device = devices.id WHERE kd.konten = $konten";
         $result = $this->db->query($sql);
 
         try {
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    $data[] = $row['device'];
+                    $data[] = [
+                        'device' => $row['device'],
+                        'nama' => $row['nama'],
+                        'lokasi' => $row['lokasi'],
+                    ];
                 }
                 return $data;
             } else {

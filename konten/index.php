@@ -1,9 +1,13 @@
 <?php
+include_once(dirname(__DIR__) . '/helper/auth.php');
+validateUserSession();
+$userId = $_SESSION['user']['id'];
+
 $title = "Konten";
 include_once(dirname(__DIR__) . '/components/Layout/header.php');
 require_once(dirname(__DIR__) . '/models/Konten.php');
 
-$Konten = new Konten();
+$Konten = new Konten($userId);
 $contents = $Konten->getAllWithDevices();
 ?>
 
@@ -15,7 +19,7 @@ $contents = $Konten->getAllWithDevices();
                 <p class="mt-2 text-sm text-gray-700">Daftar semua konten</p>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                <a href="/konten/tambah.php" class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Tambah Konten</a>
+                <a href="/konten/tambah.php" class="inline-flex items-center justify-center rounded-md border border-transparent bg-[#2B7FFF] px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-[#6BA6FF] focus:outline-none focus:ring-2 focus:bg-[#6BA6FF]  focus:ring-offset-2 sm:w-auto">Tambah Konten</a>
             </div>
         </div>
         <div class="mt-8 flex flex-col">

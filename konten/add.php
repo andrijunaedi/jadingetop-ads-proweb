@@ -1,4 +1,8 @@
 <?php
+include_once(dirname(__DIR__) . '/helper/auth.php');
+validateUserSession();
+$userId = $_SESSION['user']['id'];
+
 require_once(dirname(__DIR__) . '/models/Konten.php');
 
 # Add new data Konten
@@ -10,7 +14,7 @@ if (isset($_POST['submit'])) {
     $durasi = $_POST['durasi'];
     $devices = $_POST['devices'];
 
-    $Konten = new Konten();
+    $Konten = new Konten($userId);
     $result = $Konten->insert($judul, $konten, $thumbnail, $orientasi, $durasi, $devices);
 
     if ($result['status']) {

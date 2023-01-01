@@ -1,9 +1,9 @@
 <?php
 $servername = "127.0.0.1";
 $username = "root";
-$password = "";
+$password = "root@12*";
 $dbname = "jadingetop_ads";
-$dbport = "3306";
+$dbport = "3366";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname, $dbport);

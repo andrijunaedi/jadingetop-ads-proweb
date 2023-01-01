@@ -1,5 +1,8 @@
 <?php
+include_once(dirname(__DIR__) . '/helper/auth.php');
 require_once(dirname(__DIR__) . '/models/Konten.php');
+validateUserSession();
+$userId = $_SESSION['user']['id'];
 
 # Update konten by id
 if (isset($_POST['submit'])) {
@@ -10,7 +13,7 @@ if (isset($_POST['submit'])) {
     $orientasi = $_POST['orientasi'];
     $durasi = $_POST['durasi'];
 
-    $Konten = new Konten();
+    $Konten = new Konten($userId);
     $result = $Konten->update($id, $judul, $konten, $thumbnail, $orientasi, $durasi);
 
     if ($result['status']) {
