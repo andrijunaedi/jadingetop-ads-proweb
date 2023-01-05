@@ -7,27 +7,21 @@ body {
     display:flex;  
     justify-content: center;
     /* gap = pemisah antar elemen */
-    gap: 120px;
+    gap: 50px;
     align-items: center;
     height: 100vh;
 }
 
-.login {
+.regist {
     text-align: left;
 }
 
-.masuk {
+.Daftar {
     background-color: #0065ff;
     width: 258px;
     height: 32px;
     border: none;
     border-radius: 5px;
-    color: white;
-}
-
-.lupa-password {
-    float : right;
-    color: #0065ff;
 }
 
 .text-input {
@@ -35,15 +29,9 @@ body {
     height: 24px;
     border-width: 1px;
     border-radius: 5px;
-    padding: 9px, 13px, 9px, 13px;
-    margin: 2px;
-}
-
-a {
-    text-decoration: none;
 }
 
 .gambar {
-    width: 781px;
-    height: 1024px;
+    width: 20%;
+    height: 400px;
 }
