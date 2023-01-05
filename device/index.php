@@ -1,6 +1,6 @@
 <?php
 ob_start();
-$title = "Device";
+$title = "Perangkat | Jadingetop Ads";
 $active = "device";
 
 include_once(dirname(__DIR__) . '/components/Layout/header.php');
@@ -10,7 +10,7 @@ validateUserSessionRoleMitra();
 
 <main class="pt-12 pb-20 px-14">
     <div class="flex items-center justify-between">
-        <h1 class="text-3xl font-semibold">Device</h1>
+        <h1 class="text-3xl font-semibold">Perangkat</h1>
     </div>
 </main>
 

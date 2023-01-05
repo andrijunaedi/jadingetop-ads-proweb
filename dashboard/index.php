@@ -1,5 +1,5 @@
 <?php
-$title = "Dashboard";
+$title = "Beranda | Jadingetop Ads";
 $active = "dashboard";
 include_once(dirname(__DIR__) . '/components/Layout/header.php');
 ?>

@@ -1,5 +1,5 @@
 <?php
-$title = "Konten";
+$title = "Konten | Jadingetop Ads";
 $active = "konten";
 
 include_once(dirname(__DIR__) . '/components/Layout/header.php');
@@ -46,7 +46,7 @@ $contents = $Konten->getAllWithDevices();
                                                 </div>
                                             </td>
                                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                <a class="hover:text-blue-700" href="./detail.php?id=<?= $content['id'] ?>">
+                                                <a class="hover:text-blue-700" href="/konten/detail.php?id=<?= $content['id'] ?>">
                                                     <?= $content['judul'] ?>
                                                 </a>
                                             </td>

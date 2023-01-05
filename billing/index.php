@@ -1,5 +1,5 @@
 <?php
-$title = "Billing";
+$title = "Tagihan | Jadingetop Ads";
 $active = "billing";
 
 include_once(dirname(__DIR__) . '/components/Layout/header.php');
