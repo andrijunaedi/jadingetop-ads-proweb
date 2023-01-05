@@ -12,7 +12,7 @@ if (isset($_POST['submit'])) {
     if ($result['status']) {
         session_start();
         $_SESSION['user'] = $result['data'];
-        header('Location: /dashboard.php');
+        header('Location: ../dashboard');
     } else {
         echo $result['message'];
     }

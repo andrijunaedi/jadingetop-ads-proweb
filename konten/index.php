@@ -1,9 +1,7 @@
 <?php
-include_once(dirname(__DIR__) . '/helper/auth.php');
-validateUserSession();
-$userId = $_SESSION['user']['id'];
-
 $title = "Konten";
+$active = "konten";
+
 include_once(dirname(__DIR__) . '/components/Layout/header.php');
 require_once(dirname(__DIR__) . '/models/Konten.php');
 
@@ -25,7 +23,7 @@ $contents = $Konten->getAllWithDevices();
         <div class="mt-8 flex flex-col">
             <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                    <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg" x-data="{ 'showModal': false }" @keydown.escape="showModal = false">
+                    <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg" x-data="{ 'showModal': false, 'contentId': 0 }" @keydown.escape="showModal = false">
                         <table class="min-w-full divide-y divide-gray-300">
                             <thead class="bg-gray-50">
                                 <tr>
@@ -56,7 +54,7 @@ $contents = $Konten->getAllWithDevices();
                                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 truncate"><?= implode(", ", $content['devices']) ?></td>
                                             <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 space-x-3">
                                                 <a href="/konten/edit.php?id=<?= $content['id'] ?>" class="text-indigo-600 hover:text-indigo-900">Edit <span class="sr-only">, <?= $content['judul'] ?></span></a>
-                                                <button @click="showModal = true" type="button" class="text-red-600 hover:text-red-900">Hapus<span class="sr-only">, <?= $content['judul'] ?></span></button>
+                                                <button @click="showModal = true, contentId = <?= $content['id'] ?>" type="button" class="text-red-600 hover:text-red-900">Hapus<span class="sr-only">, <?= $content['judul'] ?></span></button>
                                             </td>
                                         </tr>
                                     <?php endforeach ?>
@@ -100,8 +98,8 @@ $contents = $Konten->getAllWithDevices();
                                             </div>
                                         </div>
                                         <div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
-                                            <form action="action=" /konten/delete.php"" method="post">
-                                                <input type="hidden" name="id" value="<?= $content['id'] ?>">
+                                            <form action="/konten/delete.php" method="post">
+                                                <input type="hidden" name="id" x-model="contentId">
                                                 <button @click="showModal = false" type="button" class="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:w-auto sm:text-sm">Batal</button>
                                                 <button type="submit" class="inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">Hapus</button>
                                             </form>

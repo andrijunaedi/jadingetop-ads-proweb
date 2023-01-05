@@ -1,8 +1,7 @@
 <?php
-include_once(dirname(__DIR__) . '/helper/auth.php');
-validateUserSession();
-
 $title = "Tambah Konten | Jadingetop Ads";
+$active = "konten";
+
 include_once(dirname(__DIR__) . '/components/Layout/header.php');
 require_once(dirname(__DIR__) . '/models/Device.php');
 

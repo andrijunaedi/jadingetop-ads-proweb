@@ -1,4 +1,17 @@
-<?php define('ROOT_PATH', dirname(__DIR__) . '/'); ?>
+<?php
+define('ROOT_PATH', dirname(__DIR__) . '/');
+include_once('../helper/auth.php');
+include_once('../models/Users.php');
+validateUserSession();
+
+$userId = $_SESSION['user']['id'];
+$role = $_SESSION['user']['role'];
+$username = $_SESSION['user']['username'];
+
+$Users = new Users($userId);
+$currentBalance = $Users->getBalance($userId);
+?>
+
 
 <!doctype html>
 <html>

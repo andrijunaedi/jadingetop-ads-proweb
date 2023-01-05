@@ -1,3 +1,7 @@
+<?php
+include_once('./helper/auth.php');
+validateUserSessionExist();
+?>
 <!doctype html>
 <html>
 
@@ -57,12 +61,19 @@
                                 </div>
                             </div>
 
-                            <div class="space-y-1">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <input id="mitra" name="mitra" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                    <label for="mitra" class="ml-2 block text-sm text-gray-900">Daftar sebagai mitra</label>
+                                </div>
+                            </div>
+
+                            <div class="space-y-1 pt-5">
                                 <a href="./login.php" class="text-blue-500">Sudah punya akun?</a>
                             </div>
 
                             <div>
-                                <button type="submit" name="submit" class="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Daftar</button>
+                                <button type="submit" name="submit" class="flex w-full justify-center rounded-md border border-transparent bg-[#0047b3] py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Daftar</button>
                             </div>
                         </form>
                     </div>

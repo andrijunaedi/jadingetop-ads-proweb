@@ -14,10 +14,14 @@ if (isset($_POST['submit'])) {
     }
 
     $Users = new Users();
-    $result = $Users->register($fullname, $username, $password);
+    if (isset($_POST['mitra']) && $_POST['mitra'] == 'on') {
+        $result = $Users->register($fullname, $username, $password, 'mitra');
+    } else {
+        $result = $Users->register($fullname, $username, $password);
+    }
 
     if ($result['status']) {
-        header('Location: /login.php');
+        header('Location: ../login.php');
     } else {
         echo $result['message'];
     }

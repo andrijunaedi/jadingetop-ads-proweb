@@ -1,9 +1,7 @@
 <?php
-include_once(dirname(__DIR__) . '/helper/auth.php');
-validateUserSession();
-$userId = $_SESSION['user']['id'];
-
 $title = "Detail";
+$active = "konten";
+
 include_once(dirname(__DIR__) . '/components/Layout/header.php');
 require_once(dirname(__DIR__) . '/models/Konten.php');
 require_once(dirname(__DIR__) . '/models/Device.php');

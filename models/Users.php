@@ -84,4 +84,23 @@ class Users
             $this->db->close();
         }
     }
+
+    // Get current balance by user id
+    function getBalance($id)
+    {
+        $sql = "SELECT balance FROM users WHERE id = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $user = $result->fetch_assoc();
+
+        try {
+            return $user['balance'];
+        } catch (\Throwable $th) {
+            throw $th;
+        } finally {
+            $this->db->close();
+        }
+    }
 }

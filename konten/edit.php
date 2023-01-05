@@ -1,10 +1,8 @@
 <?php
-include_once(dirname(__DIR__) . '/helper/auth.php');
-validateUserSession();
-$userId = $_SESSION['user']['id'];
 ob_start();
-
 $title = "Tambah Konten | Jadingetop Ads";
+$active = "konten";
+
 include_once(dirname(__DIR__) . '/components/Layout/header.php');
 require_once(dirname(__DIR__) . '/models/Konten.php');
 require_once(dirname(__DIR__) . '/models/Device.php');
@@ -35,7 +33,7 @@ if ($id) {
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
                 <h1 class="text-3xl font-semibold">Edit Konten</h1>
-                <p class="mt-2 text-sm text-gray-700">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae fugiat possimus sapiente, quidem magn</p>
+                <p class="mt-2 text-sm text-gray-700">Edit konten iklan Anda</p>
             </div>
         </div>
         <form class="space-y-8 divide-y divide-gray-200" action="/konten/update.php" method="POST">
