@@ -103,7 +103,7 @@ if ($id) {
                                             <?php foreach ((array) $devices as $device) : ?>
                                                 <div class="relative flex items-start">
                                                     <div class="flex h-5 items-center">
-                                                        <input id="<?= $device["slug"] ?>" name="devices[]" value="<?= $device["id"] ?>" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" <?= in_array($device['id'], $devices_selected) ? 'checked' : '' ?>>
+                                                        <input id="<?= $device["slug"] ?>" name="devices[]" value="<?= $device["id"] ?>" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" <?= (array_search($device['id'], array_column($devices_selected, 'device')) !== false) ? 'checked' : '' ?>>
                                                     </div>
                                                     <div class="ml-3 text-sm">
                                                         <label for="<?= $device["slug"] ?>" class="font-medium text-gray-700"><?= $device["nama"] ?></label>
