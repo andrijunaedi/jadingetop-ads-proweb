@@ -26,7 +26,7 @@ CREATE TABLE `billings` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user` int NOT NULL,
   `nominal` int NOT NULL,
-  `status` enum('approved','pending','cancel') NOT NULL,
+  `status` enum('success','pending','cancel') NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -41,7 +41,7 @@ CREATE TABLE `billings` (
 
 LOCK TABLES `billings` WRITE;
 /*!40000 ALTER TABLE `billings` DISABLE KEYS */;
-INSERT INTO `billings` VALUES (3,2,50000,'pending','2022-12-08 09:30:54','2022-12-08 09:30:52'),(4,2,10000,'approved','2022-12-08 09:31:18','2022-12-08 09:31:20'),(5,2,30000,'cancel','2022-12-08 09:31:32','2022-12-08 09:31:34');
+INSERT INTO `billings` VALUES (3,4,50000,'pending','2022-12-08 09:30:54','2022-12-08 09:30:52'),(4,4,100000000,'success','2022-12-08 09:31:18','2022-12-08 09:31:20'),(5,4,30000,'cancel','2022-12-08 09:31:32','2022-12-08 09:31:34');
 /*!40000 ALTER TABLE `billings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -125,7 +125,7 @@ CREATE TABLE `konten` (
   PRIMARY KEY (`id`),
   KEY `konten_users_null_fk` (`user`),
   CONSTRAINT `konten_users_null_fk` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -134,7 +134,7 @@ CREATE TABLE `konten` (
 
 LOCK TABLES `konten` WRITE;
 /*!40000 ALTER TABLE `konten` DISABLE KEYS */;
-INSERT INTO `konten` VALUES (1,'Glico Haku - 1 Test','https://d1d8o7q9jg8pjk.cloudfront.net/p/lg_6302eeb4a78ef.jpg','https://d1d8o7q9jg8pjk.cloudfront.net/p/lg_6302eeb4a78ef.jpg','portrait',100,2),(2,'Promo Es.Teh','https://indopostnews.com/wp-content/uploads/2022/04/IMG-20220404-WA0001-800x445.jpg','https://indopostnews.com/wp-content/uploads/2022/04/IMG-20220404-WA0001-800x445.jpg','landscape',120,2),(7,'Promo Marjan x Hydro Coco','https://images.genpi.co/uploads/arsip/normal/2022/04/05/cek-promo-alfamidi-spesial-ramadan-harga-sirup-murah-banget-gsua.jpg','https://images.genpi.co/uploads/arsip/normal/2022/04/05/cek-promo-alfamidi-spesial-ramadan-harga-sirup-murah-banget-gsua.jpg','landscape',100,2),(22,'Test Promo - 1','https://indopostnews.com/wp-content/uploads/2022/04/IMG-20220404-WA0001-800x445.jpg','https://indopostnews.com/wp-content/uploads/2022/04/IMG-20220404-WA0001-800x445.jpg','portrait',100,2),(24,'Promo Marjan x Hydro Coco','https://indopostnews.com/wp-content/uploads/2022/04/IMG-20220404-WA0001-800x445.jpg','https://indopostnews.com/wp-content/uploads/2022/04/IMG-20220404-WA0001-800x445.jpg','portrait',100,2),(25,'Promo Marjan - Test 1','https://indopostnews.com/wp-content/uploads/2022/04/IMG-20220404-WA0001-800x445.jpg','https://indopostnews.com/wp-content/uploads/2022/04/IMG-20220404-WA0001-800x445.jpg','landscape',100,2);
+INSERT INTO `konten` VALUES (1,'Glico Haku - 1 Test','https://d1d8o7q9jg8pjk.cloudfront.net/p/lg_6302eeb4a78ef.jpg','https://d1d8o7q9jg8pjk.cloudfront.net/p/lg_6302eeb4a78ef.jpg','portrait',100,2),(2,'Promo Es.Teh','https://indopostnews.com/wp-content/uploads/2022/04/IMG-20220404-WA0001-800x445.jpg','https://indopostnews.com/wp-content/uploads/2022/04/IMG-20220404-WA0001-800x445.jpg','landscape',120,2),(7,'Promo Marjan x Hydro Coco','https://images.genpi.co/uploads/arsip/normal/2022/04/05/cek-promo-alfamidi-spesial-ramadan-harga-sirup-murah-banget-gsua.jpg','https://images.genpi.co/uploads/arsip/normal/2022/04/05/cek-promo-alfamidi-spesial-ramadan-harga-sirup-murah-banget-gsua.jpg','landscape',100,2),(22,'Test Promo - 1','https://indopostnews.com/wp-content/uploads/2022/04/IMG-20220404-WA0001-800x445.jpg','https://indopostnews.com/wp-content/uploads/2022/04/IMG-20220404-WA0001-800x445.jpg','portrait',100,2),(24,'Promo Marjan x Hydro Coco','https://indopostnews.com/wp-content/uploads/2022/04/IMG-20220404-WA0001-800x445.jpg','https://indopostnews.com/wp-content/uploads/2022/04/IMG-20220404-WA0001-800x445.jpg','portrait',100,2),(25,'Promo Marjan - Test 1','https://indopostnews.com/wp-content/uploads/2022/04/IMG-20220404-WA0001-800x445.jpg','https://indopostnews.com/wp-content/uploads/2022/04/IMG-20220404-WA0001-800x445.jpg','landscape',100,2),(28,'Iphone 14 Pro with Dynamic Island','https://cdn.eraspace.com/pub/media/wysiwyg/teser-iphone-14/Rev/iPhone-14-pro---available---web-banner-mobile.jpg','https://cdn.eraspace.com/pub/media/wysiwyg/teser-iphone-14/Rev/iPhone-14-pro---available---web-banner-mobile.jpg','portrait',30,4);
 /*!40000 ALTER TABLE `konten` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -154,7 +154,7 @@ CREATE TABLE `konten_devices` (
   KEY `konten_devices_konten_null_fk` (`konten`),
   CONSTRAINT `konten_devices_devices_null_fk` FOREIGN KEY (`device`) REFERENCES `devices` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `konten_devices_konten_null_fk` FOREIGN KEY (`konten`) REFERENCES `konten` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -163,7 +163,7 @@ CREATE TABLE `konten_devices` (
 
 LOCK TABLES `konten_devices` WRITE;
 /*!40000 ALTER TABLE `konten_devices` DISABLE KEYS */;
-INSERT INTO `konten_devices` VALUES (1,1,1),(2,2,1),(3,1,2),(9,3,7),(24,1,22),(25,2,22),(26,3,22),(27,1,24),(28,2,24),(29,1,25),(30,2,25);
+INSERT INTO `konten_devices` VALUES (1,1,1),(2,2,1),(3,1,2),(9,3,7),(24,1,22),(25,2,22),(26,3,22),(27,1,24),(28,2,24),(29,1,25),(30,2,25),(36,1,28),(37,3,28);
 /*!40000 ALTER TABLE `konten_devices` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -182,7 +182,7 @@ CREATE TABLE `users` (
   `role` enum('konsumen','mitra') NOT NULL,
   `balance` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -191,7 +191,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (2,'admin','admin@jadinge.top','admin@1234','konsumen',100000000);
+INSERT INTO `users` VALUES (2,'admin','admin@jadinge.top','admin@1234','konsumen',100000000),(4,'Andri','andri@kolabfit.com','51580bfda1202b1f1805b32020b1ab459db37374f056f700b6f2660e8ca706f2','konsumen',100000000),(5,'Mitra UMKM','mitra@kolabfit.com','3ba9234b922cbd8f01d6a7c322081d0fe9de8cd74d64a6877b5942f8df321c92','mitra',0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -204,4 +204,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-08  6:07:26
+-- Dump completed on 2023-01-05  9:22:03
