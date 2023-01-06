@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteRule ^(database|models|components) - [F,L]
+
+<Directorymatch "^/.*/\.git/">
+    Order 'deny,allow'
+    Deny from all
+</Directorymatch>
