@@ -84,7 +84,6 @@ class Billings
                 while ($row = $result->fetch_assoc()) {
                     $data[$row['status']] = $row['count'];
                 }
-                var_dump($data);
                 return $data;
             } else {
                 return [
