@@ -13,8 +13,8 @@ if (isset($_POST['submit'])) {
     $result = $Billing->topup($nominal);
 
     if ($result['status']) {
-        header("Location: /billing/detail.php?id={$result['id']}}");
+        header("Location: /billing/detail.php?id={$result['id']}");
     } else {
-        header("Location: /billing/?message={$result['message']}}");
+        header("Location: /billing/?message={$result['message']}");
     }
 }
