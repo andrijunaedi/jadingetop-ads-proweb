@@ -2,7 +2,7 @@
 class Users
 {
     private $secret = "Jadingetop2023";
-    public $table = "devices";
+    public $table = "users";
     public $db;
 
     public function __construct()
@@ -98,6 +98,30 @@ class Users
         try {
             return $user['balance'];
         } catch (\Throwable $th) {
+            throw $th;
+        } finally {
+            $this->db->close();
+        }
+    }
+
+    // Update balance by user id
+    function updateBalance($id, $balance)
+    {
+        $sql = "UPDATE users SET balance = ? WHERE id = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param('ii', $balance, $id);
+
+        try {
+            $this->db->begin_transaction();
+            $stmt->execute();
+            $this->db->commit();
+
+            return [
+                'status' => true,
+                'message' => 'Berhasil update saldo'
+            ];
+        } catch (\Throwable $th) {
+            $this->db->rollback();
             throw $th;
         } finally {
             $this->db->close();

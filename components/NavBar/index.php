@@ -11,13 +11,13 @@
             </div>
 
             <div class="flex-shrink-0">
-                <button type="button" class="relative inline-flex items-center rounded-md border border-transparent bg-[#2B7FFF] px-4 py-2 text-sm font-medium text-white shadow-sm hover:hover:bg-[#6BA6FF] focus:outline-none focus:ring-2 focus:hover:bg-[#6BA6FF] focus:ring-offset-2">
+                <a href="/billing/topup.php" type="button" class="relative inline-flex items-center rounded-md border border-transparent bg-[#2B7FFF] px-4 py-2 text-sm font-medium text-white shadow-sm hover:hover:bg-[#6BA6FF] focus:outline-none focus:ring-2 focus:hover:bg-[#6BA6FF] focus:ring-offset-2">
                     <!-- Heroicon name: mini/plus -->
                     <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="20" fill="currentColor" aria-hidden="true">
                         <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
                     </svg>
                     <span>Tambah Saldo</span>
-                </button>
+                </a>
             </div>
 
             <a>
@@ -43,7 +43,7 @@
                 </div>
                 <div x-show="open" class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                     <!-- <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a> -->
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Pengaturan</a>
+                    <!-- <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Pengaturan</a> -->
                     <a href="/helper/logout.php" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Keluar</a>
                 </div>
             </div>

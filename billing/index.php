@@ -32,7 +32,7 @@ $transactions = $Billing->getAll();
 
             <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
                 <dt class="truncate text-sm font-medium text-gray-500">Batal</dt>
-                <dd class="mt-1 text-2xl font-semibold tracking-tight text-red-500"><?= isset($stats['pending']) ? number_format($stats['cancel']) : 0 ?></dd>
+                <dd class="mt-1 text-2xl font-semibold tracking-tight text-red-500"><?= isset($stats['cancel']) ? number_format($stats['cancel']) : 0 ?></dd>
             </div>
         </dl>
     </div>
@@ -43,7 +43,7 @@ $transactions = $Billing->getAll();
                 <!-- <p class="mt-2 text-sm text-gray-700">A table of placeholder stock market data that does not make any sense.</p> -->
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                <a href="#" class="inline-flex items-center justify-center rounded-md border border-transparent bg-[#2B7FFF] px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-[#6BA6FF] focus:outline-none focus:ring-2 focus:bg-[#6BA6FF] focus:ring-offset-2 sm:w-auto">Tambah Saldo</a>
+                <a href="/billing/topup.php" class="inline-flex items-center justify-center rounded-md border border-transparent bg-[#2B7FFF] px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-[#6BA6FF] focus:outline-none focus:ring-2 focus:bg-[#6BA6FF] focus:ring-offset-2 sm:w-auto">Tambah Saldo</a>
             </div>
         </div>
         <div class="mt-8 flex flex-col">
@@ -67,7 +67,9 @@ $transactions = $Billing->getAll();
                                     <?php foreach ($transactions as $transaction) : ?>
                                         <tr>
                                             <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6"><?= $transaction['id'] ?></td>
-                                            <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">Rp <?= number_format($transaction['nominal']) ?></td>
+                                            <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
+                                                <a href="/billing/detail.php?id=<?= $transaction['id'] ?>">Rp <?= number_format($transaction['nominal']) ?></a>
+                                            </td>
                                             <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900">
                                                 <?php switch ($transaction['status']) {
                                                     case 'success':
@@ -91,12 +93,12 @@ $transactions = $Billing->getAll();
                                                             <path fill-rule="evenodd" d="M6.194 12.753a.75.75 0 001.06.053L16.5 4.44v2.81a.75.75 0 001.5 0v-4.5a.75.75 0 00-.75-.75h-4.5a.75.75 0 000 1.5h2.553l-9.056 8.194a.75.75 0 00-.053 1.06z" clip-rule="evenodd" />
                                                         </svg>
                                                         <span class="ml-1">
-                                                            Bayar
+                                                            Konfirmasi Pembayaran
                                                         </span>
                                                     </a>';
-                                                    echo '<a href="#" class="inline-flex items-center rounded border border-transparent bg-red-100 px-2.5 py-2 text-xs font-medium text-red-700 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Batalkan</a>';
+                                                    // echo '<a href="#" class="inline-flex items-center rounded border border-transparent bg-red-100 px-2.5 py-2 text-xs font-medium text-red-700 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Batalkan</a>';
                                                 } else {
-                                                    echo '<a href="#" class="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Lihat Detail</a>';
+                                                    echo '<a href="/billing/detail.php?id=' . $transaction['id'] . '" class="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Lihat Detail</a>';
                                                 } ?>
                                             </td>
                                         </tr>
