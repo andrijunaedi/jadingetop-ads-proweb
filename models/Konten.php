@@ -56,7 +56,7 @@ class Konten
     {
         $data = [];
         // Mengambil data konten dan devices nya (menggunakan left join)
-        $sql = "SELECT k.id, judul, thumbnail, orientasi, durasi, d.nama device_name, lokasi device_lokasi
+        $sql = "SELECT k.id, judul, thumbnail, k.orientasi, durasi, d.nama device_name, lokasi device_lokasi
                 FROM $this->table k
                 LEFT JOIN konten_devices kd on k.id = kd.konten
                 LEFT JOIN devices d on d.id = kd.device 
