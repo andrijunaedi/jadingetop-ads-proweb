@@ -28,7 +28,7 @@ if ($id) {
         <h1 class="text-3xl font-semibold">Tagihan</h1>
         <p>Berikut adalah detail informasi penagihan transaksi topup.</p>
     </div>
-    <div class="my-8">
+    <div class="my-8" x-data="{ 'showModal': false, 'id': 0 }" @keydown.escape="showModal = false">
         <div class="overflow-hidden bg-white shadow sm:rounded-lg">
             <div class="px-4 py-5 sm:px-6">
                 <h3 class="text-lg font-medium leading-6 text-gray-900">Informasi Tagihan</h3>
@@ -51,10 +51,10 @@ if ($id) {
                     <div class="py-4 sm:grid sm:grid-cols-4 sm:gap-4 sm:py-5 sm:px-6">
                         <?php if ($bill['status'] == 'success') : ?>
                             <dt class="text-sm font-medium text-gray-500">Status</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:col-span-3 sm:mt-0">Pembayaran Berhasil</dd>
+                            <dd class="mt-1 text-sm text-green-600 sm:col-span-3 sm:mt-0">Pembayaran Berhasil</dd>
                         <?php elseif ($bill['status'] == 'cancel') : ?>
                             <dt class="text-sm font-medium text-gray-500">Status</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:col-span-3 sm:mt-0">Pembayaran Dibatalkan</dd>
+                            <dd class="mt-1 text-sm text-red-600 sm:col-span-3 sm:mt-0">Pembayaran Dibatalkan</dd>
                         <?php else : ?>
                             <dt class="text-sm font-medium text-gray-500">Transfer Pembayaran</dt>
                             <dd class="mt-1 text-sm text-gray-900 flex flex-col sm:col-span-3 sm:mt-0 lg:flex-row lg:gap-x-8">
@@ -90,10 +90,14 @@ if ($id) {
                             </dd>
                         <?php endif; ?>
                     </div>
+                    <div class="py-4 sm:grid sm:grid-cols-4 sm:gap-4 sm:py-5 sm:px-6">
+                        <dt class="text-sm font-medium text-gray-500">Perubahan Terakhir</dt>
+                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-3 sm:mt-0"><?= $bill['updated_at'] ?></dd>
+                    </div>
                     <?php if ($bill['status'] == 'pending') : ?>
                         <div class="py-4 sm:grid sm:grid-cols-4 sm:gap-4 sm:py-5 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500"></dt>
-                            <dd class="text-sm font-bold text-gray-900 sm:col-span-3 sm:mt-0">
+                            <dd class="text-sm font-bold text-gray-900 flex items-center gap-5 sm:col-span-3 sm:mt-0">
                                 <a href="https://wa.me/6281221614101?text=<?= urlencode(" Halo, \n\nKonfirmasi pembayaran \nEmail: {$_SESSION['user']['email']} \nID Transaksi: {$bill['id']} \nNominal: Rp {$bill['nominal']}") ?>" target="_blank" class="inline-flex items-center rounded-md border border-transparent bg-green-600 px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
                                         <path fill-rule="evenodd" d="M4.25 5.5a.75.75 0 00-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 00.75-.75v-4a.75.75 0 011.5 0v4A2.25 2.25 0 0112.75 17h-8.5A2.25 2.25 0 012 14.75v-8.5A2.25 2.25 0 014.25 4h5a.75.75 0 010 1.5h-5z" clip-rule="evenodd" />
@@ -103,6 +107,7 @@ if ($id) {
                                         Konfirmasi Pembayaran
                                     </span>
                                 </a>
+                                <button @click="showModal = true, id = <?= $bill['id'] ?>" type="button" class="inline-flex items-center rounded border border-transparent bg-red-100 px-2.5 py-2 text-sm font-medium text-red-700 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Batalkan</button>
                             </dd>
                         </div>
                     <?php endif; ?>
@@ -110,8 +115,48 @@ if ($id) {
             </div>
         </div>
 
-        <div class="flex mt-5 ml-5 gap-x-5 items-center">
+        <!-- <div class="flex mt-5 ml-5 gap-x-5 items-center">
             <a href="#" class="text-gray-600 hover:underline">Lihat Jam Operasional</a>
+        </div> -->
+
+        <!-- Cancel Billing -->
+        <div x-show="showModal" x-init="() => { $el.classList.remove('hidden');$el.classList.add('block') }" class="hidden relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+
+            <div class="fixed inset-0 z-10 overflow-y-auto">
+                <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                    <div @click.away="showModal = false" class="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6" x-transition:enter="motion-safe:ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
+                        <div class="absolute top-0 right-0 hidden pt-4 pr-4 sm:block">
+                            <button @click="showModal = false" type="button" class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                                <span class="sr-only">Close</span>
+                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="sm:flex sm:items-start">
+                            <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                                <svg class="h-6 w-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 10.5v3.75m-9.303 3.376C1.83 19.126 2.914 21 4.645 21h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 4.88c-.866-1.501-3.032-1.501-3.898 0L2.697 17.626zM12 17.25h.007v.008H12v-.008z" />
+                                </svg>
+                            </div>
+                            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Batalkan Pembayaran</h3>
+                                <div class="mt-2">
+                                    <p class="text-sm text-gray-500">Apakah Anda yakin membatalkan pembayaran ini?</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
+                            <form action="/billing/cancel.php" method="post">
+                                <input type="hidden" name="id" x-model="id">
+                                <button @click="showModal = false" type="button" class="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:w-auto sm:text-sm">Batal</button>
+                                <button type="submit" class="inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">Batalkan</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

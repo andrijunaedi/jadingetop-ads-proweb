@@ -54,7 +54,7 @@ class Billings
      */
     function getById($id)
     {
-        $sql = "SELECT id, nominal, status, created_at FROM $this->table WHERE id = ?";
+        $sql = "SELECT id, nominal, status, created_at, updated_at FROM $this->table WHERE id = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("i", $id);
 
@@ -177,6 +177,32 @@ class Billings
             ];
         } catch (\Exception $error) {
             $this->db->rollback();
+            return [
+                'status' => false,
+                'message' => $error->getMessage()
+            ];
+        } finally {
+            $stmt->close();
+            $this->db->close();
+        }
+    }
+
+    // Create method cancel payment
+    function cancelPayment($id)
+    {
+        $sql = "UPDATE $this->table SET status = ?, updated_at = ? WHERE id = ?";
+        $stmt = $this->db->prepare($sql);
+        $status = "cancel";
+        $updated_at = date('Y-m-d H:i:s');
+        $stmt->bind_param("sss", $status, $updated_at, $id);
+
+        try {
+            $stmt->execute();
+            return [
+                'status' => true,
+                'message' => 'Pembayaran dibatalkan'
+            ];
+        } catch (\Exception $error) {
             return [
                 'status' => false,
                 'message' => $error->getMessage()
