@@ -138,4 +138,54 @@ class Device
             $this->db->close();
         }
     }
+
+    // Update device
+    function update($id, $nama, $lokasi, $orientasi)
+    {
+        $sql = "UPDATE $this->table SET nama = ?, lokasi = ?, orientasi = ? WHERE id = ?";
+        $stmt = $this->db->prepare($sql);
+
+        $stmt->bind_param("sssi", $nama, $lokasi, $orientasi, $id);
+
+        try {
+            $this->db->begin_transaction();
+            $stmt->execute();
+            $this->db->commit();
+
+            return [
+                'status' => true,
+                'message' => 'Berhasil mengubah device'
+            ];
+        } catch (\Throwable $th) {
+            $this->db->rollback();
+            throw $th;
+        } finally {
+            $this->db->close();
+        }
+    }
+
+    // Delete device
+    function delete($id)
+    {
+        $sql = "DELETE FROM $this->table WHERE id = ?";
+        $stmt = $this->db->prepare($sql);
+
+        $stmt->bind_param("i", $id);
+
+        try {
+            $this->db->begin_transaction();
+            $stmt->execute();
+            $this->db->commit();
+
+            return [
+                'status' => true,
+                'message' => 'Berhasil menghapus device'
+            ];
+        } catch (\Throwable $th) {
+            $this->db->rollback();
+            throw $th;
+        } finally {
+            $this->db->close();
+        }
+    }
 }
