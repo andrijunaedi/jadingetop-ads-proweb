@@ -14,6 +14,6 @@ if (isset($_POST['submit'])) {
         $_SESSION['user'] = $result['data'];
         header('Location: ../dashboard');
     } else {
-        echo $result['message'];
+        header('Location: ../login.php?error=' . $result['message']);
     }
 }

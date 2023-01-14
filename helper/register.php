@@ -23,6 +23,6 @@ if (isset($_POST['submit'])) {
     if ($result['status']) {
         header('Location: ../login.php');
     } else {
-        echo $result['message'];
+        header('Location: ../register.php?error=' . $result['message']);
     }
 }
