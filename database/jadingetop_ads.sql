@@ -32,7 +32,7 @@ CREATE TABLE `billings` (
   PRIMARY KEY (`id`),
   KEY `billings_users_null_fk` (`user`),
   CONSTRAINT `billings_users_null_fk` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `billings` (
 
 LOCK TABLES `billings` WRITE;
 /*!40000 ALTER TABLE `billings` DISABLE KEYS */;
-INSERT INTO `billings` VALUES (3,4,50000,'pending','2022-12-08 09:30:54','2022-12-08 09:30:52'),(4,4,100000000,'success','2022-12-08 09:31:18','2022-12-08 09:31:20'),(5,4,30000,'cancel','2022-12-08 09:31:32','2022-12-08 09:31:34');
+INSERT INTO `billings` VALUES (3,4,50000,'success','2022-12-08 09:30:54','2023-01-11 02:26:01'),(4,4,100000000,'success','2022-12-08 09:31:18','2022-12-08 09:31:20'),(5,4,30000,'cancel','2022-12-08 09:31:32','2022-12-08 09:31:34'),(6,4,20000,'success','2023-01-11 01:22:14','2023-01-11 02:12:24'),(7,4,100000,'success','2023-01-11 01:22:14','2023-01-11 02:26:22'),(8,4,200000,'success','2023-01-11 01:47:21','2023-01-12 01:56:51'),(9,4,13500,'success','2023-01-11 02:30:12','2023-01-11 02:30:21'),(10,5,100000,'success','2023-01-12 01:54:31','2023-01-12 01:57:39'),(11,5,50000,'success','2023-01-12 01:57:52','2023-01-12 01:58:01'),(12,5,50000,'cancel','2023-01-14 15:17:50','2023-01-14 15:29:12'),(13,5,20000,'success','2023-01-14 15:32:48','2023-01-14 15:34:56');
 /*!40000 ALTER TABLE `billings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -58,10 +58,11 @@ CREATE TABLE `devices` (
   `nama` varchar(100) NOT NULL,
   `lokasi` varchar(150) DEFAULT NULL,
   `slug` varchar(100) NOT NULL,
+  `orientasi` enum('portrait','landscape') DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `devices_users_null_fk` (`user`),
   CONSTRAINT `devices_users_null_fk` FOREIGN KEY (`user`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,7 +71,7 @@ CREATE TABLE `devices` (
 
 LOCK TABLES `devices` WRITE;
 /*!40000 ALTER TABLE `devices` DISABLE KEYS */;
-INSERT INTO `devices` VALUES (1,2,'WarmingUP','CoWorkz Lt 4 - FIT','warmingup'),(2,2,'Koperasi GIAT','Depan Koperasi GIAT - FKB','koperasi-giat'),(3,2,'TULT Lobby','Lobby Depan - TULT','tult-lobby');
+INSERT INTO `devices` VALUES (1,2,'WarmingUP','CoWorkz Lt 4 - FIT','warmingup',NULL),(2,2,'Koperasi GIAT','Depan Koperasi GIAT - FKB','koperasi-giat',NULL),(3,2,'TULT Lobby','Lobby Depan - TULT','tult-lobby',NULL),(4,5,'Device Test','FIT Lantai 1','device-1','landscape'),(7,5,'Test TV','dadadg','test-tv','portrait'),(8,5,'Test Nama Device Panjang','KDkad','test-nama-device-panjang','landscape');
 /*!40000 ALTER TABLE `devices` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -125,7 +126,7 @@ CREATE TABLE `konten` (
   PRIMARY KEY (`id`),
   KEY `konten_users_null_fk` (`user`),
   CONSTRAINT `konten_users_null_fk` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -134,7 +135,7 @@ CREATE TABLE `konten` (
 
 LOCK TABLES `konten` WRITE;
 /*!40000 ALTER TABLE `konten` DISABLE KEYS */;
-INSERT INTO `konten` VALUES (1,'Glico Haku - 1 Test','https://d1d8o7q9jg8pjk.cloudfront.net/p/lg_6302eeb4a78ef.jpg','https://d1d8o7q9jg8pjk.cloudfront.net/p/lg_6302eeb4a78ef.jpg','portrait',100,2),(2,'Promo Es.Teh','https://indopostnews.com/wp-content/uploads/2022/04/IMG-20220404-WA0001-800x445.jpg','https://indopostnews.com/wp-content/uploads/2022/04/IMG-20220404-WA0001-800x445.jpg','landscape',120,2),(7,'Promo Marjan x Hydro Coco','https://images.genpi.co/uploads/arsip/normal/2022/04/05/cek-promo-alfamidi-spesial-ramadan-harga-sirup-murah-banget-gsua.jpg','https://images.genpi.co/uploads/arsip/normal/2022/04/05/cek-promo-alfamidi-spesial-ramadan-harga-sirup-murah-banget-gsua.jpg','landscape',100,2),(22,'Test Promo - 1','https://indopostnews.com/wp-content/uploads/2022/04/IMG-20220404-WA0001-800x445.jpg','https://indopostnews.com/wp-content/uploads/2022/04/IMG-20220404-WA0001-800x445.jpg','portrait',100,2),(24,'Promo Marjan x Hydro Coco','https://indopostnews.com/wp-content/uploads/2022/04/IMG-20220404-WA0001-800x445.jpg','https://indopostnews.com/wp-content/uploads/2022/04/IMG-20220404-WA0001-800x445.jpg','portrait',100,2),(25,'Promo Marjan - Test 1','https://indopostnews.com/wp-content/uploads/2022/04/IMG-20220404-WA0001-800x445.jpg','https://indopostnews.com/wp-content/uploads/2022/04/IMG-20220404-WA0001-800x445.jpg','landscape',100,2),(28,'Iphone 14 Pro with Dynamic Island','https://cdn.eraspace.com/pub/media/wysiwyg/teser-iphone-14/Rev/iPhone-14-pro---available---web-banner-mobile.jpg','https://cdn.eraspace.com/pub/media/wysiwyg/teser-iphone-14/Rev/iPhone-14-pro---available---web-banner-mobile.jpg','portrait',30,4);
+INSERT INTO `konten` VALUES (1,'Glico Haku - 1 Test','https://d1d8o7q9jg8pjk.cloudfront.net/p/lg_6302eeb4a78ef.jpg','https://d1d8o7q9jg8pjk.cloudfront.net/p/lg_6302eeb4a78ef.jpg','portrait',100,2),(2,'Promo Es.Teh','https://indopostnews.com/wp-content/uploads/2022/04/IMG-20220404-WA0001-800x445.jpg','https://indopostnews.com/wp-content/uploads/2022/04/IMG-20220404-WA0001-800x445.jpg','landscape',120,2),(7,'Promo Marjan x Hydro Coco','https://images.genpi.co/uploads/arsip/normal/2022/04/05/cek-promo-alfamidi-spesial-ramadan-harga-sirup-murah-banget-gsua.jpg','https://images.genpi.co/uploads/arsip/normal/2022/04/05/cek-promo-alfamidi-spesial-ramadan-harga-sirup-murah-banget-gsua.jpg','landscape',100,2),(22,'Test Promo - 1','https://indopostnews.com/wp-content/uploads/2022/04/IMG-20220404-WA0001-800x445.jpg','https://indopostnews.com/wp-content/uploads/2022/04/IMG-20220404-WA0001-800x445.jpg','portrait',100,2),(24,'Promo Marjan x Hydro Coco','https://indopostnews.com/wp-content/uploads/2022/04/IMG-20220404-WA0001-800x445.jpg','https://indopostnews.com/wp-content/uploads/2022/04/IMG-20220404-WA0001-800x445.jpg','portrait',100,2),(25,'Promo Marjan - Test 1','https://indopostnews.com/wp-content/uploads/2022/04/IMG-20220404-WA0001-800x445.jpg','https://indopostnews.com/wp-content/uploads/2022/04/IMG-20220404-WA0001-800x445.jpg','landscape',100,2),(28,'Iphone 14 Pro with Dynamic Island','https://cdn.eraspace.com/pub/media/wysiwyg/teser-iphone-14/Rev/iPhone-14-pro---available---web-banner-mobile.jpg','https://cdn.eraspace.com/pub/media/wysiwyg/teser-iphone-14/Rev/iPhone-14-pro---available---web-banner-mobile.jpg','portrait',30,4),(30,'Iklan Macbook Pro M2','https://images.squarespace-cdn.com/content/v1/54d696e5e4b05ca7b54cff5c/e5f3d240-ec6f-402e-a364-5f78ed36ac18/Thinking+Of+Preordering+an+M2+MacBook+Pro%3F+Read+This+First+Hero.jpg','https://images.squarespace-cdn.com/content/v1/54d696e5e4b05ca7b54cff5c/e5f3d240-ec6f-402e-a364-5f78ed36ac18/Thinking+Of+Preordering+an+M2+MacBook+Pro%3F+Read+This+First+Hero.jpg','landscape',30,5),(31,'Test','https://images.squarespace-cdn.com/content/v1/54d696e5e4b05ca7b54cff5c/e5f3d240-ec6f-402e-a364-5f78ed36ac18/Thinking+Of+Preordering+an+M2+MacBook+Pro%3F+Read+This+First+Hero.jpg','https://images.squarespace-cdn.com/content/v1/54d696e5e4b05ca7b54cff5c/e5f3d240-ec6f-402e-a364-5f78ed36ac18/Thinking+Of+Preordering+an+M2+MacBook+Pro%3F+Read+This+First+Hero.jpg','landscape',30,5),(32,'Ini adalah judul konten panjang','https://images.squarespace-cdn.com/content/v1/54d696e5e4b05ca7b54cff5c/e5f3d240-ec6f-402e-a364-5f78ed36ac18/Thinking+Of+Preordering+an+M2+MacBook+Pro%3F+Read+This+First+Hero.jpg','https://images.squarespace-cdn.com/content/v1/54d696e5e4b05ca7b54cff5c/e5f3d240-ec6f-402e-a364-5f78ed36ac18/Thinking+Of+Preordering+an+M2+MacBook+Pro%3F+Read+This+First+Hero.jpg','landscape',30,5);
 /*!40000 ALTER TABLE `konten` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -154,7 +155,7 @@ CREATE TABLE `konten_devices` (
   KEY `konten_devices_konten_null_fk` (`konten`),
   CONSTRAINT `konten_devices_devices_null_fk` FOREIGN KEY (`device`) REFERENCES `devices` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `konten_devices_konten_null_fk` FOREIGN KEY (`konten`) REFERENCES `konten` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -163,7 +164,7 @@ CREATE TABLE `konten_devices` (
 
 LOCK TABLES `konten_devices` WRITE;
 /*!40000 ALTER TABLE `konten_devices` DISABLE KEYS */;
-INSERT INTO `konten_devices` VALUES (1,1,1),(2,2,1),(3,1,2),(9,3,7),(24,1,22),(25,2,22),(26,3,22),(27,1,24),(28,2,24),(29,1,25),(30,2,25),(36,1,28),(37,3,28);
+INSERT INTO `konten_devices` VALUES (1,1,1),(2,2,1),(3,1,2),(9,3,7),(24,1,22),(25,2,22),(26,3,22),(27,1,24),(28,2,24),(29,1,25),(30,2,25),(36,1,28),(37,3,28),(40,1,30),(41,2,30),(42,3,30),(43,1,31),(44,2,31),(45,3,31),(46,4,31),(47,7,31),(48,1,32),(49,2,32),(50,3,32),(51,4,32),(52,7,32),(53,8,32);
 /*!40000 ALTER TABLE `konten_devices` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -191,7 +192,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (2,'admin','admin@jadinge.top','admin@1234','konsumen',100000000),(4,'Andri','andri@kolabfit.com','51580bfda1202b1f1805b32020b1ab459db37374f056f700b6f2660e8ca706f2','konsumen',100000000),(5,'Mitra UMKM','mitra@kolabfit.com','3ba9234b922cbd8f01d6a7c322081d0fe9de8cd74d64a6877b5942f8df321c92','mitra',0);
+INSERT INTO `users` VALUES (2,'admin','admin@jadinge.top','admin@1234','konsumen',100000000),(4,'Andri','andri@kolabfit.com','51580bfda1202b1f1805b32020b1ab459db37374f056f700b6f2660e8ca706f2','konsumen',100583500),(5,'Mitra UMKM','mitra@kolabfit.com','3ba9234b922cbd8f01d6a7c322081d0fe9de8cd74d64a6877b5942f8df321c92','mitra',170000);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -204,4 +205,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-05  9:22:03
+-- Dump completed on 2023-01-16 14:31:44
