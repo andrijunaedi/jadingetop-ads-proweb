@@ -68,7 +68,7 @@ if ($id) {
                                         </g>
                                     </svg>
                                     <span>Koral Retail Indonesia (Admin Regina)</span>
-                                    <span class="font-bold">1234567</span>
+                                    <span class="font-bold">3417147148</span>
                                 </div>
                                 <div class="flex flex-col">
                                     <svg width="115" height="40" version="1.1" viewBox="0 0 308 63" xmlns="http://www.w3.org/2000/svg">
@@ -85,7 +85,7 @@ if ($id) {
                                         </g>
                                     </svg>
                                     <span>Koral Retail Indonesia (Admin Febiani)</span>
-                                    <span class="font-bold">1234567</span>
+                                    <span class="font-bold">0812 2161 4101</span>
                                 </div>
                             </dd>
                         <?php endif; ?>
