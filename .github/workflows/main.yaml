@@ -1,0 +1,30 @@
+name: PHP Automation Deployment
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    environment: production
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 0
+
+      - name: Pull latest changes
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script_stop: true
+          script: |
+            cd public_html/
+            git pull origin main
