@@ -27,4 +27,4 @@ jobs:
           script_stop: true
           script: |
             cd public_html/
-            git pull ssh main
+            git pull origin main
